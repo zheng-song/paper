@@ -692,7 +692,8 @@
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
+%\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.3pt}
 
 \ifthenelse{\equal{\HUST@degree}{fyp}}{
   \fancyfoot[R]{\thepage}

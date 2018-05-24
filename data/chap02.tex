@@ -1,7 +1,7 @@
 \chapter{调试通道总体设计与关键技术}
 
 \section{总体设计}
-	在嵌入式软件的开发、移植、运行时都需要输出一些调试或日志信息，目前VxWorks当中使用WorkBench集成开发平台来完成软件的开发、调试工作，这是一种典型的在线调试方式，但是在中船重工的实际生产环境当中他们希望使用一种离线的调试日志的方式来进行程序的调试工作，它们希望在设备运行的大量应用程序当中加入调试信息，这些程序的调试信息都能够自动的传输到普通的PC上，他们能够在之后查看其调试信息，对这些信息分析工作。
+	在嵌入式软件的开发、移植、运行时都需要输出一些调试或日志信息，目前VxWorks当中使用WorkBench集成开发平台来完成软件的开发、调试工作，它所使用的调试方式是一种典型的在线调试方式，但是在项目的实际生产环境当中他们希望使用一种离线的调试日志的方式来进行程序的调试工作，它们希望在设备运行的大量应用程序当中加入调试信息，这些程序的调试信息都能够自动的传输到普通的PC上，他们能够在之后查看其调试信息，对这些信息分析工作。
 	
 	基于以上的需求，此次我们的工作就是在VxWorks下完成一个能够满足他们的需求的调试通道，在主机端我们使用一个分析程序来对目标机上传输过来的调试数据进行分析；在目标机端我们给应用程序提供一个调试接口，将调试信息从通信接口中传输出去，本次设计的调试通道主要应用于VxWorks下程序移植时大量调试信息的输出的场景。对于在该应用场景下的整个调试通道的框架如\autoref{fig:sys-data-diagram}所示。
 
@@ -11,9 +11,7 @@
 \caption{调试通道框架图}\label{fig:sys-data-diagram}
 \end{figure}
 
-	在我们所设计的调试通道当中，目标机上的上层应用程序会调用调试通道中所提供的调试接口，通过调试接口将调试信息传递给通信接口，为了解决设备上不再使用RS-232接口的问题，而USB的体系结构又是主从式的，无法直接作为调试通道的通信接口来使用，我们可以使用外部的USB/RS-232的转换器的方式来实现通信接口。
-	同时在系统上使用与设备相对应的USB/RS-232设备驱动程序。这样PC端的应用软件应用软件仍然是针对RS-232串行端口编程的，外设也是以RS-232为数据通信通道的，但是PC端到外设之间的物理连接却是USB总线，其上的数据格式也是USB数据格式。
-	USB接口的出现并不能完全的取代RS-232的作用，我们需要照顾习惯了使用RS-232的用户在不需要理会USB的复杂的内部协议的情况下来享受USB接口的即插即用、数据可靠传输、扩展方便等优点。
+	在我们所设计的调试通道当中，目标机上的上层应用程序会调用调试通道中所提供的调试接口，通过调试接口将调试信息传递给通信接口，由于设备上没有可用的RS-232串口，而USB的体系结构又是主从式的，无法直接作为调试通道的通信接口来使用，为了解决这个问题，在我们的调试通道当中使用外部的USB/RS-232的转换器来实现通信接口，同时在系统上使用与设备相对应的USB/RS-232设备驱动程序。这样PC端的应用软件应用软件仍然是针对RS-232串行端口编程的，外设也是以RS-232为数据通信通道的，但是PC端到外设之间的物理连接却是USB总线，其上的数据格式也是USB数据格式。
 	
 	在VXWorks中并没有现成可用的USB转串口驱动以及USB转串口转换器，所以我们需要自己选择一个外部的USB/RS-232转换器，以及针对该USB/RS-232转换器的USB转串口驱动。在主机端都会有已经实现好的USB转串口驱动程序，我们只需要提供转换器即可，这样用户在不需要理会USB的复杂的内部协议的情况下来享受USB接口的即插即用、数据可靠传输、扩展方便等优点。分析程序会自动接收串口的数据，完成协议分析、调试信息的定位等工作。
 \begin{figure}[!h]
@@ -113,21 +111,19 @@
 	
 \begin{itemize}
 \item 二进制信号量\\
-	二进制信号量是最快、最通用的信号量，既可以用于同步也可以用于资源计数。wind的二进制信号量所需系统开销最少，适用于高性能的需求。二进制信号量在资源可用时标记为FULL，在资源不可用时标记为EMPTY。在VxWorks中二进制信号量使用函数semBCreate()来创建，二进制信号量的提取和释放过程如\autoref{fig:二进制信号量的提取与释放过程} 所示。
+	二进制信号量是最快、最通用的信号量，既可以用于同步也可以用于资源计数。wind的二进制信号量所需系统开销最少，适用于高性能的需求。二进制信号量在资源可用时标记为FULL，在资源不可用时标记为EMPTY。在VxWorks中二进制信号量使用函数semBCreate()来创建，二进制信号量的提取和释放过程如\autoref{fig:erjinzhiTiQu}和\autoref{fig:erjinzhiShiFang}所示。
 
-\begin{figure}[h]
+\begin{figure}[!h]
 \centering
-  \begin{subfigure}[b]{1.0\textwidth}
-  \includegraphics[width=\textwidth]{./graphics/erjinzhiTiQu.pdf}
-  \caption{提取信号量}\label{fig:cp2102Front}
-  \end{subfigure}
-  ~
-  \begin{subfigure}[b]{1.0\textwidth}
-  \includegraphics[width=\textwidth]{./graphics/erjinzhiShiFang.pdf}
-  \caption{释放信号量}\label{fig:cp2102Rear}
-  \end{subfigure}
-\caption{二进制信号量的提取与释放过程}\label{fig:二进制信号量的提取与释放过程}
-\end{figure} 
+\includegraphics[width=13cm , height=10cm]{./graphics/erjinzhiTiQu.pdf}
+  \caption{提取信号量}\label{fig:erjinzhiTiQu}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=13cm , height=10cm]{./graphics/erjinzhiShiFang.pdf}
+  \caption{释放信号量}\label{fig:erjinzhiShiFang}
+\end{figure}
 
 
 \item 互斥信号量\\

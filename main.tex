@@ -26,14 +26,14 @@
 \author{郑松}{Song Zheng}
 \major{计算机应用技术}{Computer Applications Technology}
 \supervisor{张杰\hspace{1em}讲师}{ Lecturer Jie Zhang}
-\date{2018}{3}{26}
+\date{2018}{5}{27}
 %\date{\today}
 
 \zhabstract{
-	在嵌入式软件的开发、移植、运行时都需要输出一些调试或日志信息，目前VxWorks当中使用WorkBench集成开发平台来完成软件的开发、调试工作，这是一种典型的在线调试方式，但是在中船重工的实际生产环境当中他们希望使用一种离线的调试日志的方式来进行程序的调试工作，它们希望在设备运行的大量应用程序当中加入调试信息，这些调试信息都能够自动的传输到普通的PC上，他们能够在之后查看其调试信息，对这些信息分析工作。
+	在嵌入式软件的开发、移植、运行时都需要输出一些调试或日志信息，目前VxWorks当中使用WorkBench集成开发平台来完成软件的开发、调试工作，它的调试工具使用的是一种典型的在线调试方式，但是在我们项目的实际生产环境中希望能够使用一种离线的调试日志的方式来进行程序的调试工作，他们希望在设备运行的大量应用程序当中加入调试信息，这些调试信息都能够自动的传输到普通的PC上，之后他们可以查看这些调试信息，对这些信息进行分析。
 	
 
-	本文首先对中船重工的实际需求出发，详细地了解了他们所使用的设备的情况和具体的需求，给出了一个总体的设计方案，由于目前大多数的设备都已不再将RS-232的串口作为必须的标准接口，而是大量的使用USB接口，在中船重工的实际环境当中也没有可供使用的串口，因此在调试信息的传输过程中只能够使用USB接口，本设计即以USB转串口驱动为基础，并配以设计的调试接口组成一个实际可用的调试通道，方便它们在程序的开发和移植的过程中进行离线的调试。
+	本文从项目的实际需求出发，详细地了解了他们所使用的设备的情况和具体的需求，给出了一个总体的设计方案，由于目前大多数的设备都已不再将RS-232的串口作为必须的标准接口，而是大量的使用USB接口，在项目所处的实际环境当中也没有可供使用的串口，因此在调试信息的传输过程中只能够使用USB接口，本设计即以USB转串口驱动为基础，并配以我们设计的调试接口组成一个实际可用的调试通道，方便它们在程序的开发和移植的过程中进行离线的调试。
 	
 	根据我们的方案需求，我们分析了VxWorks下的设备驱动所需的关键技术，然后在VxWorks下设计出了一个特定需求的USB转串口的驱动程序和一个普通的USB转串口驱动程序，驱动程序具有双向缓冲功能，同时具有即插即用、使用方便等特点。	
 	然后我们给上层需要输出调试信息的应用设计了两个调试接口。一个Log调试接口，我们为这个接口设计了一个自定义的调试通道的传输协议；另外我们也给出了一个标准输出重定向的调试接口，方便开发人员直接使用标准输出进行调试信息的输出。	 
@@ -44,15 +44,17 @@
 
 \enabstract
 {
-    Generally, some debugging or log information needs to be output during software development, porting, and runtime. For embedded devices, serial ports are commonly used for the transmission of this information. There are also related debugging tools in Tornado, an integrated development environment of  VxWorks. It is suitable for the development environment of the user software, not for the actual production environment, and at the same time，because most of the current devices no longer use the RS-232 serial port as a required standard interface, but use a lot of USB interfaces. Only the USB interface can be used in the transmission of debugging information. based on VxWorks,This thesis has developed a small and easy-to-use debugging information transmission channel which uses the CP2102 module to implement the hardware part of the USB port to the serial port, and than we wrote a USB port to serial port driver  and the upper application layer interface part under VxWorks. this project comes from the actual needs of CSIC(China Shipbuilding Industry Corporation).
+    In the development, migration, and runtime of embedded software, some debugging or log information needs to be output. At present, Workbench integrated development platform is used in VxWorks to complete software development and debugging. Its debugging tool uses a typical online debugging. The way, but in the actual production environment of our project, we hope to use an offline debug log to debug the program. They want to add debugging information to a large number of applications running on the device. These debugging information can be automatic. It is transmitted to a normal PC, after which they can view the debug information and analyze the information.
 
-	Firstly, This paper analyzes the background and the requirements of the project, gives the overall design plan, and gives the key technologies that are used and   understood in this design. Then it starts with the relationship between I/O system and driver under VxWorks, analyzes the process of I/O system call and driver under VxWorks, and realizes the necessary USB port to serial port driver of our debugging channel. The driver has two-way buffering function, and has plug-and-play, easy to use and other features. Then we designed the transmission protocol of the debug channel, and gave two upper application interfaces, a Log log interface, and a standard output redirection interface.
+This article starts from the actual needs of the project, understands in detail the conditions and specific requirements of the equipment they use, and gives an overall design proposal. Since most of the current devices no longer use RS-232 serial ports as The necessary standard interface, but a large number of use of the USB interface, there is no serial port available for use in the actual environment of the project, so only the USB interface can be used during the transmission of debugging information, this design is to USB to serial port Based on the driver, and equipped with the debugging interface we designed to form a practical and available debugging channel, they are convenient for offline debugging during program development and porting.
 
-	Finally, through overall testing and testing of the various parts of the system, we verified that the design of the debugging channel was basically completed, the system is running reliably, and the required requirements are fulfilled.
+According to our solution requirements, we analyzed the key technologies needed for device drivers under VxWorks, and then designed a specific USB-to-serial driver and a generic USB to serial driver under VxWorks. Two-way buffer function, with plug and play, easy to use and so on.
+Then we design two debugging interfaces for the application that needs to output debugging information. A Log debug interface, we have designed a custom debug channel transfer protocol for this interface; in addition we also provide a standard output redirection debug interface to facilitate developers to directly use the standard output for debugging information output.
+Finally, we test the whole system and test each part separately to verify that the debug channel design is basically completed, the system is running reliably, and the required requirements are fulfilled.
 
 }
 \enkeywords
-{embedded system, device driver development, USB port to serial port, VxWorks, CP2102}
+{VxWorks operating system, device driver development,debugging, USB to serial}
 
 \begin{document}
 % frontmatter用于设定论文的状态、改变样式，其具体使用见简单示例。 
