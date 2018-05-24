@@ -1,2 +1,7 @@
-main.pdf
-*.bbl
+main.toc
+main.thm
+main.synctex.gz
+main.out
+main.blg
+main.bbl
+main.aux
