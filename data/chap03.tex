@@ -9,7 +9,7 @@
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.9\textwidth]{./graphics/vxworks-kernel-diagram.pdf}
-\caption{VxWorks驱动内核层次结构}\label{fig:VxWorks内核驱动层次结构}
+\caption{VxWorks内核层次结构}\label{fig:VxWorks内核驱动层次结构}
 \end{figure}	
 			
 	从\autoref{fig:VxWorks内核驱动层次结构}当中我们可以看出主机端USB驱动在VxWorks当中的层次结构，但是VxWorks作为一个嵌入式系统，其作为USB的主/从端的可能性都是存在的，所以其上也有USB从端驱动栈的实现。但我们本次需要使用的是其主机栈，在VxWorks当中USB驱动程序堆栈的开发符合的是通用串行总线规范2.0标准，VxWorks中的USB主机端内核驱动层次如\autoref{fig:VxWorks_USB_kernel_diagram}所示。VxWorks中的将USB协议在主机端分成三层来实现，分别是客户端驱动程序(Client Driver)、USB驱动(USBD)、主机控制器驱动(HCD)，每一层完成不同的功能。其通信的逻辑结构和PC端的软硬件结构如\autoref{fig:USB通信结构}所示。
@@ -17,7 +17,7 @@
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.9\textwidth]{./graphics/VxWorks_USB_kernel_diagram.pdf}
-\caption{VxWorks下USB内核驱动层次结构}\label{fig:VxWorks_USB_kernel_diagram}
+\caption{VxWorks下USB驱动层次结构}\label{fig:VxWorks_USB_kernel_diagram}
 \end{figure}
 
 \begin{figure}[h]
@@ -34,18 +34,34 @@
 \caption{USB通信结构}\label{fig:USB通信结构}
 \end{figure}
 
+
+\noindent \textbf{1. USB I/O层驱动}
+
+	USB I/O层驱动也叫USB客户端驱动，它的功能是完成对不同类型设备的功能驱动。通常操作系统为了应用程序的平台无关性都会为应用程序提供一套标准的接口，VxWorks也不例外，它为应用层的提供了接口函数有creat()、open()、unlink()、remove()、close()、rename()、read()、write()、ioctl()、lseek()、readv()、writev()等\cite{陈洋2007VxWorks}\cite{Wu2008Implementation}\cite{Zhang2010Design}，我们通常将其称作为标准I/O 库函数。
+	使用库函数可以在对应用层的程序进行开发和移植的时候使用同一套接口，这给应用程序的编程人员带来很大的方便，大大提高了其开发效率，避免了重复工作，而对于操作系统而言它需要通过调整底层驱动或者操作系统中间层来为标准I/O接口的实现提供支持。
 	
-	客户端驱动程序的功能是完成对不同类型设备的功能驱动。本次设计中所要完成的USB口转串口的驱动要完成的就是客户端驱动。USB口转串口驱动会构建USB I/O请求包(I/O request，IRP)来向USBD层发出数据接收或者发送的请求，IRP是USB协议中定义的一个抽象概念，我们需要根据所发送的内容和发送的方式来具体的实现一个IRP\cite{李雪红2004USB}。
+	在Mac OS、Linux、或Windows当中会把这套接口以标准库的形式呈现，但是在VxWorks中它们是由系统的内核实现的，直接以内核文件的形式提供的，它们都位于ioLib.c文件下\cite{VxWorks内核解读}。之所以是以内核文件的形式来提供，是因为VxWorks当中不会区分用户态和内核态，这是VxWorks与通用操作系统的一个很大的不同点。在Vxworks当中所有的内核函数都可以不加限制的由用户程序直接进行调用，这样就减少了中断转入内核态再继续执行这一个过程，这对于强实时性系统而言极为重要，因为这样减少了时间开销，但是这样实现的一个缺点是减少了系统使用权限上的限制，为内核带来了很大的不安全性，极易导致内核的崩溃，所以VxWorks系统上应用程序的开发和使用对开发人员的要求比较高。
+		
+	VxWorks中I/O调用结构如\autoref{fig:I/O调用}所示。
+	\begin{figure}[!h]
+\centering
+\includegraphics[width=1.0\textwidth]{./graphics/IOCall.pdf}
+\caption{I/O调用}\label{fig:I/O调用}
+\end{figure}
 	
-	USBD是USB的核心驱动，其提供了操作系统组件(主要是设备驱动)能够用来访问USB设备的方法，其实现是由操作系统决定的。USBD提供包括USB总线的枚举、总线带宽的分配、传输控制等操作，它还会处理客户端驱动程序发送来的IRP包，并在对IRP请求包进行解析之后将实际的请求映射到适当的HCD或者直接交给主机控制器处理。除此之外USBD负责的内容还包括新设备的动态插拔、电源管理和对客户端驱动程序的维护等。
 	
-	HCD层提供一个软件抽象来完成USB主控制器的各种事物处理，用于隐藏主控制器的硬件实现细节，HCD只服务于我们的USBD层，对上层应用而言其通常是不能直接访问的。
-	VxWorks中HCD层只需要向USBD层注册一个接口函数，所有的USBD层的请求都是用这个接口函数来完成，对于UHCI主机控制器驱动而言他被命名为usbdHcdUhciExec，对于OCHI主控器驱动而言被命名为usbdHcdOhciExec。
-	HCD层会将USBD层传输下来的事务调度给主机控制器进行处理，当事物处理完成之后HCD层会将处理结果返回给USBD层。此外它还会完成对主机控制器和根集线器的配置和驱动等操作\cite{李雪红2004USB}。VxWorks中本身已经集成好了对几种常用的主机控制器驱动的支持，包括UHCI主控器、OHCI主控器、EHCI主控器，VxWorks中暂时没有实现xHCI主控驱动。
+	本次设计中所要完成的USB转串口的驱动要完成的就是客户端驱动，它会承接来自VxWorks的I/O系统的操作，然后USB转串口驱动内部来完成用户的操作要求，向下它会构建USB I/O请求包(I/O request，IRP)来向USBD层发出数据接收或者发送的请求，IRP是USB协议中定义的一个抽象概念，我们需要根据所发送的内容和发送的方式来具体的实现一个IRP\cite{李雪红2004USB}。
+
+\noindent \textbf{2. USB栈}
+	
+	USB栈也叫USB核心层驱动(USBD)，其提供了操作系统组件(主要是设备驱动)能够用来访问USB设备的方法，其实现是由操作系统决定的。USBD提供包括USB总线的枚举、总线带宽的分配、传输控制等操作，它还会处理客户端驱动程序发送来的IRP包，并在对IRP请求包进行解析之后将实际的请求映射到适当的HCD或者直接交给主机控制器处理。除此之外USBD负责的内容还包括新设备的动态插拔、电源管理和对客户端驱动程序的维护等。
+	
+\noindent \textbf{3. HC 驱动}
+	
+	HC驱动(HCD)用于驱动主机上的USB主机控制器，其提供一个软件抽象来完成USB主控制器的各种事物处理，用于隐藏主控制器的硬件实现细节，HCD只服务于我们的USBD层，对上层应用而言其通常是不能直接访问的。VxWorks中HCD层只需要向USBD层注册一个接口函数，所有的USBD层的请求都是用这个接口函数来完成，对于UHCI主机控制器驱动而言他被命名为usbdHcdUhciExec，对于OCHI主控器驱动而言被命名为usbdHcdOhciExec。HCD层会将USBD层传输下来的事务调度给主机控制器进行处理，当事物处理完成之后HCD层会将处理结果返回给USBD层。此外它还会完成对主机控制器和根集线器的配置和驱动等操作\cite{李雪红2004USB}。VxWorks中本身已经集成好了对几种常用的主机控制器驱动的支持，包括UHCI主控器、OHCI主控器、EHCI主控器，VxWorks中暂时没有实现xHCI主控驱动。
 	
 	对于我们的USB口转串口驱而言，我们不再需要实现对物理设备的数据结构抽象，因为VxWorks中的USB HCD层已经为我们实现好了物理层的抽象，同时还给我们提供了USBD层，因此我们只需要实现USB主机三层结构当中的客户端驱动程序即可，使其能够驱动特定的USB设备正常工作。在客户端驱动当中，我们需要完成IO系统的各类接口的实现、完成驱动需要实现的特殊功能的实现、将驱动集成到系统中等工作。
 	
-
 
 \section{CP2102开发}
 	除了驱动程序之外，USB口转串口的实现还需要硬件来作为支撑,PC机上本身并没有USB/RS-232的转换器，
@@ -232,7 +248,7 @@ typedef struct cp210x_dev
 \end{figure}
 
 VxWorks当中提供了usbdDescriptorGet()函数来获取设备描述符，该函数的三、四个参数用于指定所需要获取的描述的类型，对于此处我们需要获取的是设备的标准描述符，于是将其设置为USB\_ RT\_ STANDARD|USB\_ RT\_ DEVICE和USB\_ RT\_ DEVICE。
-	我们将标准设备描述符的信息放在指向USB_DESCR_DEVICE类型的结构体指针pBfr当中，然后从中提取厂商ID和产品ID，我们将该驱动支持的设备的厂商ID和设备ID存储在一个全局的二维数组当中，然后通过遍历当前插入的设备的VID和PID是否在我们的数组当中来判断这个设备是否能够被我们的驱动所支持。设备识别的流程如\autoref{fig:device-recognize}所示，目前支持的设备的设备ID、产品ID的组合如\autoref{tab:目前支持的设备列表}所示。
+	我们将标准设备描述符的信息放在指向USB\_ DESCR\_ DEVICE类型的结构体指针pBfr当中，然后从中提取厂商ID和产品ID，我们将该驱动支持的设备的厂商ID和设备ID存储在一个全局的二维数组当中，然后通过遍历当前插入的设备的VID和PID是否在我们的数组当中来判断这个设备是否能够被我们的驱动所支持。设备识别的流程如\autoref{fig:device-recognize}所示，目前支持的设备的设备ID、产品ID的组合如\autoref{tab:目前支持的设备列表}所示。
 \begin{figure}[!h]
 \centering
 \includegraphics[width=1.0\textwidth]{./graphics/device-recognize.pdf}

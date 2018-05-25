@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/W32TeX) (preloaded format=xelatex 2018.3.26)  24 MAY 2018 16:00
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/W32TeX) (preloaded format=xelatex 2018.3.26)  25 MAY 2018 13:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2238,14 +2238,14 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
-[2] [3]) [4]
+[2]) [3]
 \openout2 = `data/chap02.aux'.
 
  (./data/chap02.tex
 Chapter 2.
 File: ./graphics/sys-data-diagram.pdf Graphic file (type pdf)
 <use ./graphics/sys-data-diagram.pdf>
-[5
+[4
 
 
 
@@ -2253,71 +2253,82 @@ File: ./graphics/sys-data-diagram.pdf Graphic file (type pdf)
 ]
 File: ./graphics/debug-system-diagram.pdf Graphic file (type pdf)
 <use ./graphics/debug-system-diagram.pdf>
- [6] [7]
-File: ./graphics/IOCall.pdf Graphic file (type pdf)
-<use ./graphics/IOCall.pdf>
+ [5]
 File: ./graphics/vxworks-device-link.pdf Graphic file (type pdf)
 <use ./graphics/vxworks-device-link.pdf>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 File: ./graphics/DEVHDR.pdf Graphic file (type pdf)
 <use ./graphics/DEVHDR.pdf>
 
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[6]
+File: ./graphics/DEVENTRY.pdf Graphic file (type pdf)
+<use ./graphics/DEVENTRY.pdf>
+ [7]
+File: ./graphics/FDENTRY.pdf Graphic file (type pdf)
+<use ./graphics/FDENTRY.pdf>
+
+Underfull \vbox (badness 4001) has occurred while \output is active []
+
+ [8]
+File: ./graphics/erjinzhiTiQu.pdf Graphic file (type pdf)
+<use ./graphics/erjinzhiTiQu.pdf>
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[8]
-File: ./graphics/DEVENTRY.pdf Graphic file (type pdf)
-<use ./graphics/DEVENTRY.pdf>
- [9]
-File: ./graphics/FDENTRY.pdf Graphic file (type pdf)
-<use ./graphics/FDENTRY.pdf>
- [10]
-File: ./graphics/erjinzhiTiQu.pdf Graphic file (type pdf)
-<use ./graphics/erjinzhiTiQu.pdf>
 File: ./graphics/erjinzhiShiFang.pdf Graphic file (type pdf)
 <use ./graphics/erjinzhiShiFang.pdf>
 
-
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[11]
+[9]
+
+LaTeX Warning: Text page 10 contains only floats.
+
+
+Underfull \vbox (badness 6510) has occurred while \output is active []
+
+ [10]
 File: ./graphics/usb-structure.pdf Graphic file (type pdf)
 <use ./graphics/usb-structure.pdf>
 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.145 
+      
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.152 
+      
+? 
+[11]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [12]
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.154 
-      
-? 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.161 
-      
-? 
+ [12])
 [13]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [14])
-[15]
 \openout2 = `data/chap03.aux'.
 
  (./data/chap03.tex
 Chapter 3.
 File: ./graphics/vxworks-kernel-diagram.pdf Graphic file (type pdf)
 <use ./graphics/vxworks-kernel-diagram.pdf>
-[16
+[14
 
 
 
@@ -2333,7 +2344,10 @@ File: ./graphics/USB-PC-structure.pdf Graphic file (type pdf)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[17] [18]
+[15]
+File: ./graphics/IOCall.pdf Graphic file (type pdf)
+<use ./graphics/IOCall.pdf>
+ [16] [17]
 File: ./graphics/cp2102-circuit-diagram.pdf Graphic file (type pdf)
 <use ./graphics/cp2102-circuit-diagram.pdf>
 File: ./graphics/CP2102ChioceConf.pdf Graphic file (type pdf)
@@ -2347,159 +2361,114 @@ File: ./graphics/CP2102DefConf.pdf Graphic file (type pdf)
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[19]
 File: ./graphics/cp2102Front.pdf Graphic file (type pdf)
 <use ./graphics/cp2102Front.pdf>
 File: ./graphics/cp2102Rear.pdf Graphic file (type pdf)
 <use ./graphics/cp2102Rear.pdf>
- [20]
-Overfull \hbox (15.478pt too wide) in paragraph at lines 113--132
+[18] [19]
+Overfull \hbox (15.478pt too wide) in paragraph at lines 129--148
  [][] 
  []
 
-[21] (c:/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
+[20] (c:/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 (c:/texlive/2017/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-) [22]
+) [21]
 File: ./graphics/SDev-Drv-Diagram-a.pdf Graphic file (type pdf)
 <use ./graphics/SDev-Drv-Diagram-a.pdf>
- [23]
+ [22]
 File: ./graphics/usbdDynamicAttachRegister.pdf Graphic file (type pdf)
 <use ./graphics/usbdDynamicAttachRegister.pdf>
+ [23]
+File: ./graphics/usdbDescriptorGet.pdf Graphic file (type pdf)
+<use ./graphics/usdbDescriptorGet.pdf>
+File: ./graphics/device-recognize.pdf Graphic file (type pdf)
+<use ./graphics/device-recognize.pdf>
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [24]
-File: ./graphics/usdbDescriptorGet.pdf Graphic file (type pdf)
-<use ./graphics/usdbDescriptorGet.pdf>
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.235 ...�设备描述符的信息放在指向USB_
-                                                  DESCR_DEVICE类型的结�...
-
-? 
-
-LaTeX Warning: Reference `fig:device-recognize' on page 25 undefined on input l
-ine 235.
-
-
-! LaTeX Error: Not in outer par mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.236 \begin{figure}[!h]
-                        
-? 
-! Undefined control sequence.
-\caption@ORI@xfloat ... \global \setbox \@currbox 
-                                                  \color@vbox \normalcolor \...
-l.236 \begin{figure}[!h]
-                        
-? 
-! Missing number, treated as zero.
-<to be read again> 
-                   \vbox 
-l.236 \begin{figure}[!h]
-                        
-? 
-File: ./graphics/device-recognize.pdf Graphic file (type pdf)
-<use ./graphics/device-recognize.pdf>
-! Missing $ inserted.
-<inserted text> 
-                $
-l.241 
-      
-? 
-
-Overfull \hbox (1720.90253pt too wide) in paragraph at lines 234--241
-\TU/texgyretermes(0)/m/n/12 VICE\TU/AdobeSongStd(0)/m/n/12 。|  我 们 将 标 准 设 备 描 
-述 符 的 信 息 放 在 指 向 \TU/texgyretermes(0)/m/n/12 USB$[]\OML/cmm/m/it/12 ESCR[]EVIC
-E[][][][][][][][]pBfr[][][][][][][][][][][]ID[][][]ID[][][][][][][][][][][][][]
-[][]ID[][][]ID[][][][][][][][][][][][][][][][][][][][][][][][][][][][][]VID[]PI
-D[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
-[][][][][][][][][][][][][][]ID[][][]ID[][][][][][][] []\OT1/cmr/m/n/12 3\OML/cm
-m/m/it/12 :\OT1/cmr/m/n/12 2[][][][][][]$ 
- []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 File: ./graphics/Dev-Init.pdf Graphic file (type pdf)
 <use ./graphics/Dev-Init.pdf>
-[25]
+[24]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 File: ./graphics/SDev-Drv-Diagram-b.pdf Graphic file (type pdf)
 <use ./graphics/SDev-Drv-Diagram-b.pdf>
- [26] [27] [28]
+[25] [26] [27]
 File: ./graphics/SDevDataSend-A.pdf Graphic file (type pdf)
 <use ./graphics/SDevDataSend-A.pdf>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 File: ./graphics/SDevDataSend-B.pdf Graphic file (type pdf)
 <use ./graphics/SDevDataSend-B.pdf>
 
-
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[29]
+[28]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [29]
 File: ./graphics/Dev-Data-Buf.pdf Graphic file (type pdf)
 <use ./graphics/Dev-Data-Buf.pdf>
- [30]
+
 
 LaTeX Font Warning: Font shape `TU/AdobeKaitiStd(0)/m/it' undefined
-(Font)              using `TU/AdobeKaitiStd(0)/m/n' instead on input line 377.
+(Font)              using `TU/AdobeKaitiStd(0)/m/n' instead on input line 393.
 
-[31] [32]
+[30] [31]
 File: ./graphics/usbdVendorSpecify.pdf Graphic file (type pdf)
 <use ./graphics/usbdVendorSpecify.pdf>
-File: ./graphics/vendorSpecify.pdf Graphic file (type pdf)
-<use ./graphics/vendorSpecify.pdf>
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+File: ./graphics/vendorSpecify.pdf Graphic file (type pdf)
+<use ./graphics/vendorSpecify.pdf>
+[32]
 File: ./graphics/SDevUninit.pdf Graphic file (type pdf)
 <use ./graphics/SDevUninit.pdf>
 
+
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[33]
 File: ./graphics/iosDrvRemove.pdf Graphic file (type pdf)
 <use ./graphics/iosDrvRemove.pdf>
+[33]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[34] [35]
+ [34]
 File: ./graphics/MDev-Drv-Diagram-a.pdf Graphic file (type pdf)
 <use ./graphics/MDev-Drv-Diagram-a.pdf>
-File: ./graphics/MDev-Drv-Diagram-b.pdf Graphic file (type pdf)
-<use ./graphics/MDev-Drv-Diagram-b.pdf>
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-Underfull \vbox (badness 4634) has occurred while \output is active []
-
- [36]
+File: ./graphics/MDev-Drv-Diagram-b.pdf Graphic file (type pdf)
+<use ./graphics/MDev-Drv-Diagram-b.pdf>
+[35] [36]
 File: ./graphics/MDevDataSend.pdf Graphic file (type pdf)
 <use ./graphics/MDevDataSend.pdf>
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[37] [38]
+[37]
 File: ./graphics/MDevUninit.pdf Graphic file (type pdf)
 <use ./graphics/MDevUninit.pdf>
-) [39]
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) [38] [39]
 \openout2 = `data/chap04.aux'.
 
  (./data/chap04.tex
@@ -2742,45 +2711,45 @@ File: ./graphics/routonLogRun.pdf Graphic file (type pdf)
 
  (./data/chap06.tex
 Chapter 6.
-) [53
+[53
 
 
 
 
-] [54
+]) [54] [55
 
 
 
 
 ] (./main.bbl
-LaTeX Font Info:    Calculating math sizes for size <10.5> on input line 33.
+LaTeX Font Info:    Calculating math sizes for size <10.5> on input line 38.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <10.5> not available
-(Font)              size <10.95> substituted on input line 33.
+(Font)              size <10.95> substituted on input line 38.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <10.5> not available
-(Font)              size <10.95> substituted on input line 33.
+(Font)              size <10.95> substituted on input line 38.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <10.5> not available
-(Font)              size <10.95> substituted on input line 33.
+(Font)              size <10.95> substituted on input line 38.
 
 ! Misplaced alignment tab character &.
-l.45 ...ternational Symposium on Test Automation &
+l.50 ...ternational Symposium on Test Automation &
                                                   
 ? 
 ! Misplaced alignment tab character &.
-l.68 \newblock Computer Engineering &
+l.73 \newblock Computer Engineering &
                                       Applications, 2003.
 ? 
-[55
+[56
 
 
 ]
 ! Misplaced alignment tab character &.
-l.151 ...dings of Software Engineering Education &
+l.156 ...dings of Software Engineering Education &
                                                    Training, 2000.
 ? 
 )
@@ -2788,7 +2757,7 @@ l.151 ...dings of Software Engineering Education &
 \openout6 = `main.thm'.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 117.
- [56]
+ [57]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 117.
  (./main.aux (./data/chap01.aux) (./data/chap02.aux) (./data/chap03.aux)
 (./data/chap04.aux) (./data/chap05.aux) (./data/chap06.aux))
@@ -2802,18 +2771,15 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 117.
  ) 
 Here is how much of TeX's memory you used:
- 34758 strings out of 493007
- 647688 string characters out of 6137965
- 810017 words of memory out of 5000000
- 38194 multiletter control sequences out of 15000+600000
- 548573 words of font info for 186 fonts, out of 8000000 for 9000
+ 34745 strings out of 493007
+ 646687 string characters out of 6137965
+ 826910 words of memory out of 5000000
+ 38183 multiletter control sequences out of 15000+600000
+ 548557 words of font info for 184 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  60i,17n,94p,10391b,1761s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (63 pages).
+Output written on main.pdf (64 pages).

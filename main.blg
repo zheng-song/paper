@@ -11,6 +11,7 @@ A level-1 auxiliary file: data/chap06.aux
 Database file #1: ref/myref.bib.bib
 Warning--there's a school but no address in 刘小军2008基于
 Warning--there's a school but no address in 张鹏2007基于
+Warning--there's a school but no address in 连丽红2009嵌入式调试技术的研究与实现
 Warning--there's a publisher but no address in 曹桂平2011VxWorks
 Warning--there's a publisher but no address in VxWorksDriverAPI
 Warning--there's a publisher but no address in Wind2003VxWorks
@@ -35,45 +36,45 @@ Warning--there's a publisher but no address in VxWorks网络程序员指南
 Warning--there's a publisher but no address in 周启平2005VxWorks
 Warning--there's a publisher but no address in USB大全
 Warning--there's a publisher but no address in 李肇庆2004串行端口技术
-You've used 49 entries,
+You've used 50 entries,
             2464 wiz_defined-function locations,
-            794 strings with 10164 characters,
-and the built_in function-call counts, 13134 in all, are:
-= -- 1282
-> -- 395
+            798 strings with 10276 characters,
+and the built_in function-call counts, 13605 in all, are:
+= -- 1332
+> -- 399
 < -- 1
-+ -- 184
-- -- 92
-* -- 878
-:= -- 1884
-add.period$ -- 156
-call.type$ -- 49
++ -- 186
+- -- 93
+* -- 921
+:= -- 1946
+add.period$ -- 160
+call.type$ -- 50
 change.case$ -- 0
 chr.to.int$ -- 0
-cite$ -- 75
-duplicate$ -- 871
-empty$ -- 1393
-format.name$ -- 119
-if$ -- 3008
+cite$ -- 77
+duplicate$ -- 915
+empty$ -- 1445
+format.name$ -- 120
+if$ -- 3112
 int.to.chr$ -- 0
-int.to.str$ -- 49
+int.to.str$ -- 50
 missing$ -- 52
-newline$ -- 248
-num.names$ -- 49
-pop$ -- 204
+newline$ -- 253
+num.names$ -- 50
+pop$ -- 205
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 185
+skip$ -- 186
 stack$ -- 0
-substring$ -- 1282
+substring$ -- 1360
 swap$ -- 16
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 26
-while$ -- 74
-width$ -- 51
-write$ -- 509
-(There were 26 warnings)
+warning$ -- 27
+while$ -- 76
+width$ -- 52
+write$ -- 519
+(There were 27 warnings)
